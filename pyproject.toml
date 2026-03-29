@@ -1,0 +1,29 @@
+[project]
+name = "llm-unsupervised-conf"
+version = "0.1.0"
+description = "Utilities for unsupervised confidence estimation and calibration for LLMs"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "torch>=2.1",
+    "transformers>=4.40",
+    "tqdm>=4.66",
+    "vllm>=0.5.0",
+    "datasets>=2.18",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["llm_unsupervised_conf*"]
+
+
+
