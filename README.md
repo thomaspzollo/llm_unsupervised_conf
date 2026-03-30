@@ -14,9 +14,11 @@ Then, once you've setup a virtual environment for the project
 
 To reproduce our experiments, first run the following bash scripts to produce LLM outputs, embeddings, and verbalized confidence:
 
+    cd scripts/
     bash run_produce_data.sh
     bash run_embeddings.sh
     bash run_verbalized_confidence.sh
+    bash run_base.sh
 
 Then, run notebooks in `experiments/` in numerical order
 
