@@ -3,6 +3,10 @@
 
 Code for the paper *Unsupervised Confidence Calibration for Reasoning LLMs from a Single Generation*
 
+Paper: [[Link]](https://arxiv.org/abs/2604.19444)
+
+### Setup and installation
+
 To get setup, run:
 
     git clone <repo-url>
@@ -12,6 +16,9 @@ Then, once you've setup a virtual environment for the project
 
     pip install -e .
 
+
+### Producing LLM outputs and embeddings
+
 To reproduce our experiments, first run the following bash scripts to produce LLM outputs, embeddings, and verbalized confidence:
 
     cd scripts/
@@ -20,10 +27,12 @@ To reproduce our experiments, first run the following bash scripts to produce LL
     bash run_verbalized_confidence.sh
     bash run_base.sh
 
+### Paper experiments
+
 Then, run notebooks in `experiments/` in numerical order
 
- - Notebooks numbered 00X run initial setup
- - Notebooks numbered 01X run main experiments
- - Notebooks numbered 02X run distribution shift experiments
- - Notebooks numbered 03X run selective prediction experiment
- - Notebooks numbered 04X run linguistic calibration experiment
+ - `00*` run initial setup
+ - `01*` run main experiments
+ - `02*` run distribution shift experiments
+ - `03*` run selective prediction experiment
+ - `04*` run linguistic calibration experiment
