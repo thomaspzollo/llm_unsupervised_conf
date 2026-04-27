@@ -177,16 +177,6 @@ def build_verbal_conf_prompt(
             resp = resp[:1200] + " ...[truncated]"
         resp_block = f"\nMODEL_RESPONSE (may include reasoning):\n{resp}\n"
 
-    # stem = (
-    #     "You are a calibration assistant.\n"
-    #     "Task: estimate the probability that the given ANSWER is correct for the QUESTION.\n\n"
-    #     "Output format (STRICT):\n"
-    #     "1) Write at most THREE short sentences of reasoning (keep it brief).\n"
-    #     "2) On a NEW LINE, output ONLY the probability in the form \\boxed{p} where p is a decimal in [0,1].\n"
-    #     "   - Examples: \\boxed{0.03}, \\boxed{0.62},  \\boxed{0.81}, \\boxed{0.97}\n"
-    #     "   - Do not output those example scores exactly, try to be precise about the exact probability of this answer being correct\n"
-    #     "3) Do NOT write anything after the \\boxed{...} line.\n"
-    # )
     stem = VERBAL_CONF_STEMS[stem_idx]
 
     user = (
@@ -254,32 +244,6 @@ def fit_predict_prob_models(
         ridge_pred = np.clip(ridge.predict(X_test), 0.0, 1.0)
         out["ridge_clip"] = ridge_pred
 
-    # if "split_isotonic_on_ridge" in methods:
-    #     X_a, X_b, y_a, y_b = train_test_split(
-    #         X_train,
-    #         y_train_prob,
-    #         test_size=split_frac,
-    #         random_state=random_state,
-    #     )
-    
-    #     ridge_a = Pipeline([
-    #         ("scaler", StandardScaler()),
-    #         ("reg", Ridge(alpha=1.0, random_state=random_state)),
-    #     ])
-    #     ridge_a.fit(X_a, y_a)
-    #     pred_b = ridge_a.predict(X_b)
-    
-    #     iso = IsotonicRegression(y_min=0.0, y_max=1.0, out_of_bounds="clip")
-    #     iso.fit(pred_b, y_b)
-    
-    #     ridge_all = Pipeline([
-    #         ("scaler", StandardScaler()),
-    #         ("reg", Ridge(alpha=1.0, random_state=random_state)),
-    #     ])
-    #     ridge_all.fit(X_train, y_train_prob)
-    #     pred_test = ridge_all.predict(X_test)
-    
-    #     out["split_isotonic_on_ridge"] = iso.predict(pred_test)
 
     if "split_isotonic_on_ridge" in methods:
         X_a, X_b, y_a, y_b = train_test_split(
@@ -332,4 +296,5 @@ def fit_predict_prob_models(
 
     # Return only requested methods (and in the requested order)
     return {m: out[m] for m in methods if m in out}
+
 

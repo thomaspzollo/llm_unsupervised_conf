@@ -170,9 +170,7 @@ def build_qa_prompt_base(tokenizer, model_name: str, question: str) -> str:
                 "content": f"{question}",
             },
         ]
-        # prompts =  tokenizer.apply_chat_template(
-        #     messages, tokenize=False, add_generation_prompt=True,
-        # )
+
     elif "Qwen3" in model_name:
         stem = "Please answer the question without outputting any intermediate text."
         messages = [
@@ -181,9 +179,6 @@ def build_qa_prompt_base(tokenizer, model_name: str, question: str) -> str:
                 "content": f"{stem}\nQuestion: {question}",
             }
         ]
-        # prompts = tokenizer.apply_chat_template(
-        #     messages, tokenize=False, add_generation_prompt=True,
-        # )
 
     elif "Nemotron" in model_name:
         stem = "Please answer the question without outputting any intermediate text."
@@ -193,9 +188,6 @@ def build_qa_prompt_base(tokenizer, model_name: str, question: str) -> str:
                 "content": f"{stem}\nQuestion: {question}",
             }
         ]
-        # prompts = tokenizer.apply_chat_template(
-        #     messages, tokenize=False, add_generation_prompt=True
-        # )
 
     elif "gemma" in model_name:
         stem = "Please answer the question without outputting any intermediate text."
@@ -209,9 +201,6 @@ def build_qa_prompt_base(tokenizer, model_name: str, question: str) -> str:
                 "content": [{"type": "text", "text": f"{question}"}]
             },
         ]
-        # prompts = tokenizer.apply_chat_template(
-        #     messages, tokenize=False, add_generation_prompt=True
-        # )
 
     else:
         raise ValueError
